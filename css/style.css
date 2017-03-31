@@ -1,0 +1,41 @@
+.heading{
+    background-color: aqua;
+
+}
+
+.formulario{
+
+    margin-top: 50px;
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+.titulo{
+    color: blue;
+}
+/* Avery 5160 labels -- CSS and HTML by Juan carlos leon salcido */
+
+
+#html-content-holder{
+    width: 280px;
+    height: 98px;
+    overflow: hidden;
+background-color: white;
+    outline: 1px dotted;
+}
+img{
+
+    width: 120px;
+    height: 65px;
+}
+
+#descripcion{
+    font-size: 12px;
+}
+
+#precio{
+    font-size: 20px;
+    margin-left: 35px;
+}

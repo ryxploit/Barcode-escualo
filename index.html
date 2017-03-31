@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESCUALO FLEET</title>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" >
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+
+    <!--/css-->
+
+
+
+
+    <!--scripts-->
+    <script src="js/jquery.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--/scripts-->
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1 class="titulo"><img src="img/logo-escualo.png" class="logo">
+            BARCODE ESCUALO FLEET </h1>
+    </div>
+    
+</div>
+
+
+<div class="col-md-3 formulario">
+<form class="form-group center-block ">
+
+    <label>Codigo de barras:</label>
+    <input id="text" type="text" class="txtCode form-control" placeholder="Codigo">
+
+    <label>precio del producto:</label>
+    <input type="text" class=" form-control txtprecio" placeholder="Descripcion del producto">
+
+    <label>Descripcion del producto:</label>
+        <textarea  class=" form-control txtproducto" placeholder="Descripcion del producto" rows="2">
+        </textarea>
+
+
+<br>
+    <input id="btn-Preview-Image" type="button" value="Generar" class="btn btn-primary btn-sm"/>
+    <input type="button" class="btn btn-default btn-sm" value="Limpiar" onclick="recargarr()">
+    <a id="btn-Convert-Html2Image" href="#" class="btn btn-danger btn-sm active" role="button" >Guardar</a>
+</form>
+</div>
+<!--contenedor -->
+<div id="html-content-holder" class="col-md-4" >
+    <img id="code"  /> <label id="precio"></label> <br>
+    <b><p id="descripcion"></p></b>
+</div>
+
+
+<!--screenshot-->
+<div id="previewImage" class="col-lg-5">
+
+</div><br>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+//Genera screenshot y guarda en png
+
+$(document).ready(function(){
+
+
+    var element = $("#html-content-holder"); // global variable
+    var getCanvas; // global variable
+
+    $("#btn-Preview-Image").on('click', function () {
+        html2canvas(element, {
+            onrendered: function (canvas) {
+                $("#previewImage").append(canvas);
+
+                getCanvas = canvas;
+            }
+        });
+    });
+
+    $("#btn-Convert-Html2Image").on('click', function () {
+        var imgageData = getCanvas.toDataURL("image/png");
+        // Now browser starts downloading it instead of just showing it
+        var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        $("#btn-Convert-Html2Image").attr("download",$('#text').val()+".png").attr("href", newData);
+        $("#btn-Convert-Html2Image").click(function () {
+        });
+    });
+
+});
+
+//Genera el codigo de barras
+
+$(document).ready(function() {
+
+    /* $(".active").click(function () {
+     genScreenshot($('#text').val());
+     });*/
+    $(".txtCode").keyup(function () {
+
+
+        var txtcode = $(this).val();
+        if (txtcode == ''){
+            $("#code").remove();
+            $("#html-content-holder").prepend(' <img id="code"  /> ');
+
+        }else {
+
+            createcanvas(txtcode);
+        }
+
+    });
+
+    $(".txtproducto").keyup(function () {
+
+        $("#descripcion").html($(this).val());
+
+    });
+
+    $(".txtprecio").keyup(function () {
+
+        $("#precio").html( "$" + $(this).val());
+
+    });
+
+    function createcanvas(txtcode) {
+
+        $("#code").JsBarcode(txtcode, {
+            width: 2,
+            height: 100,
+            quite: 10,
+            format: "CODE128",
+            displayValue: true,
+            fontOptions: "",
+            font: "monospace",
+            textAlign: "center",
+            fontSize: 20,
+            backgroundColor: "",
+            lineColor: "#000"
+        });
+
+    }
+
+});
+
+
+
+//Recarga la pagina para limpiar
+function recargarr() {
+        location.reload();
+}
+
+</script>
+</body>
+</html>
