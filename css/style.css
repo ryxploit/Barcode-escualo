@@ -20,7 +20,7 @@
 
 #html-content-holder{
     width: 280px;
-    height: 98px;
+    height: 110px;
     overflow: hidden;
 background-color: white;
     outline: 1px dotted;
@@ -32,7 +32,7 @@ img{
 }
 
 #descripcion{
-    font-size: 12px;
+    font-size: 16px;
 }
 
 #precio{
