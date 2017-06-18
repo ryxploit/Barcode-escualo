@@ -41,11 +41,13 @@
     <input id="text" type="text" class="txtCode form-control" placeholder="Codigo">
 
     <label>precio del producto:</label>
-    <input type="text" class=" form-control txtprecio" placeholder="Descripcion del producto">
+    <input type="text" class=" form-control txtprecio" placeholder="Precio del producto">
 
-    <label>Descripcion del producto:</label>
-        <textarea  class=" form-control txtproducto" placeholder="Descripcion del producto" rows="2">
-        </textarea>
+
+        <div class="form-group">
+      <label for="comment">Descripcion del producto:</label>
+      <textarea class="form-control txtproducto" rows="5"  placeholder="Descripcion del producto"></textarea>
+    </div>
 
 
 <br>
@@ -147,7 +149,7 @@ $(document).ready(function() {
             format: "CODE128",
             displayValue: true,
             fontOptions: "",
-            font: "monospace",
+            font: "Arial Black",
             textAlign: "center",
             fontSize: 25,
             backgroundColor: "",
